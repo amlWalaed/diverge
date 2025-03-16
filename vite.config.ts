@@ -20,7 +20,8 @@ export default defineConfig({
       dirs: [
         './src/composables/**/*.ts',
         './src/views/**/*.ts',
-        './src/utils',
+        './src/utils/**/*.ts',
+        './src/api/**/*.ts',
         './src/layouts/**/*.ts',
         './src/components/*.ts',
       ],
