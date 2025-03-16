@@ -26,7 +26,16 @@ export default defineConfig({
       ],
       vueTemplate: true,
       dts: true,
-      imports: ['vue', 'vue-router'],
+      imports: [
+        'vue',
+        'vue-router',
+        {
+          '@tanstack/vue-table': ['createColumnHelper'],
+        },
+        {
+          'reka-ui': ['useForwardPropsEmits', 'useForwardProps', 'useEmitAsProps'],
+        },
+      ],
     }),
   ],
   resolve: {
