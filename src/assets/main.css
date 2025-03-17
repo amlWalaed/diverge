@@ -1,1 +1,61 @@
 @import 'tailwindcss';
+@config '../../tailwind.config.ts';
+@plugin '@egoist/tailwindcss-icons';
+@import './button.css';
+@theme {
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(230 9% 13%);
+
+  --color-muted: hsl(210 40% 96.1%);
+  --color-muted-foreground: hsl(215.4 16.3% 46.9%);
+
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(222.2 84% 4.9%);
+
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(234 5% 40%);
+
+  --color-border: hsl(240 6% 90%);
+  --color-input: hsl(233 11% 86%);
+
+  --color-primary: #3a5bc8;
+  --color-primary-foreground: #fdfdfe;
+
+  --color-primary-1: #fdfdfe;
+  --color-primary-2: #f7f9ff;
+  --color-primary-3: #edf2fe;
+  --color-primary-4: #dfeaff;
+  --color-primary-5: #d0dfff;
+  --color-primary-6: #bdd1ff;
+  --color-primary-7: #a7bff9;
+  --color-primary-8: #88a5ef;
+  --color-primary-9: #3a5bc8;
+  --color-primary-10: #2d4cb7;
+  --color-primary-11: #3a5bc7;
+  --color-primary-11: #1d2d5c;
+
+  --color-ring: hsl(222.2 84% 4.9%);
+
+  --color-radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  .table-header {
+    --table-header-bg: theme(colors.primary.2);
+  }
+  :where(.table-body > tr:nth-child(even)) {
+    --table-row-even-bg-color: theme(colors.border);
+    --table-row-bg-color: var(--table-row-even-bg-color);
+    background-color: var(--table-row-bg-color);
+  }
+  :where(.table-body > tr:nth-child(odd)) {
+    --table-row-odd-bg-color: theme(colors.white);
+    --table-row-bg-color: var(--table-row-odd-bg-color);
+  }
+}

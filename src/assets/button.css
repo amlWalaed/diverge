@@ -1,0 +1,140 @@
+@layer utilities {
+  .btn-primary {
+    --btn-solid-forground: theme(colors.white);
+    --btn-solid-bg: theme(colors.primary.9);
+    --btn-solid-bg-hover: theme(colors.primary.10);
+    --btn-solid-bg-active: theme(colors.primary.5);
+
+    --btn-link-bg: var(--btn-solid-bg);
+    --btn-link-bg-hover: var(--btn-solid-bg-hover);
+    --btn-link-bg-active: var(--btn-solid-bg-active);
+    --btn-link-forground: var(--btn-link-bg);
+
+    --btn-outline-forground: theme(colors.primary.9);
+    --btn-outline-bg: theme(colors.white);
+    --btn-outline-bg-hover: theme(colors.primary.4);
+    --btn-outline-bg-active: theme(colors.primary.5);
+
+    --btn-ghost-forground: var(--btn-outline-forground);
+    --btn-ghost-bg: var(--btn-outline-bg);
+    --btn-ghost-bg-hover: var(--btn-outline-bg-hover);
+    --btn-ghost-bg-active: var(--btn-outline-bg-active);
+
+    --btn-soft-forground: theme(colors.primary.9);
+    --btn-soft-bg: theme(colors.primary.3);
+    --btn-soft-bg-hover: theme(colors.primary.4);
+    --btn-soft-bg-active: theme(colors.primary.5);
+  }
+}
+
+@layer components {
+  .btn-solid {
+    --btn-bg-color: var(--btn-solid-bg);
+    --btn-bg-hover-color: var(--btn-solid-bg-hover);
+    --btn-bg-active-color: var(--btn-solid-bg-active);
+    --btn-text-color: var(--btn-solid-forground);
+  }
+  .btn-link {
+    --btn-bg-color: var(--btn-link-bg);
+    --btn-bg-hover-color: var(--btn-link-bg-hover);
+    --btn-bg-active-color: var(--btn-link-bg-active);
+    --btn-text-color: var(--btn-link-forground);
+  }
+  .btn-ghost {
+    --btn-bg-color: var(--btn-ghost-bg);
+    --btn-bg-hover-color: var(--btn-ghost-bg-hover);
+    --btn-bg-active-color: var(--btn-ghost-bg-active);
+    --btn-text-color: var(--btn-ghost-forground);
+  }
+  .btn-outline {
+    --btn-bg-color: var(--btn-outline-bg);
+    --btn-bg-hover-color: var(--btn-outline-bg-hover);
+    --btn-bg-active-color: var(--btn-outline-bg-active);
+    --btn-text-color: var(--btn-outline-forground);
+  }
+  .btn-soft {
+    --btn-bg-color: var(--btn-soft-bg);
+    --btn-bg-hover-color: var(--btn-soft-bg-hover);
+    --btn-bg-active-color: var(--btn-soft-bg-active);
+    --btn-text-color: var(--btn-soft-forground);
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /*                                   styles                                   */
+  /* -------------------------------------------------------------------------- */
+  .btn {
+    --btn-border-width: theme('borderWidth.DEFAULT');
+    @apply relative inline-flex items-center justify-center gap-2 font-medium transition-all first-letter:capitalize focus-visible:outline-none focus-visible:ring active:bg-(--btn-bg-active-color) disabled:pointer-events-none disabled:cursor-not-allowed disabled:border-gray-300 disabled:bg-gray-300 disabled:text-white;
+  }
+
+  /* button size */
+  .btn-2xs {
+    @apply px-2 py-1 text-xs;
+  }
+  .btn-xs {
+    @apply px-4 py-2 text-xs;
+  }
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+  .btn-base {
+    @apply px-4 py-2 text-base;
+  }
+  .btn-lg {
+    @apply px-5 py-1 text-lg;
+  }
+  .btn-xl {
+    @apply px-5 py-1 text-xl;
+  }
+  /* ----------------------- basic class for each style ----------------------- */
+  .btn-solid {
+    @apply border-(--btn-border-width) border-(--btn-bg-color) bg-(--btn-bg-color) text-(--btn-text-color) shadow;
+  }
+  .btn-outline {
+    @apply border-(--btn-border-width) border-(--btn-text-color) text-(--btn-text-color);
+  }
+  .btn-ghost {
+    @apply border-(--btn-border-width) border-transparent text-(--btn-text-color);
+  }
+  .btn-soft {
+    @apply border-(--btn-border-width) border-transparent bg-(--btn-bg-color) text-(--btn-text-color);
+  }
+  .btn-link {
+    @apply p-0 text-(--btn-text-color);
+  }
+
+  /* ------------- apply classes for button state  ------------ */
+  :is(.btn-solid, .btn-outline, .btn-ghost, .btn-soft):where(
+      :not(.btn-disabled):not(.btn-loading)
+    ):where(button, a, .btn-hover) {
+    @apply hover:bg-(--btn-bg-hover-color) active:bg-(--btn-bg-active-color);
+  }
+  .btn-solid:where(:not(.btn-disabled):not(.btn-loading)):where(button, a, .btn-hover) {
+    @apply hover:border-(--btn-bg-hover-color) active:border-(--btn-bg-active-color);
+  }
+  .btn-link:where(:not(.btn-disabled):not(.btn-loading)):where(button, a, .btn-hover) {
+    @apply hover:text-(--btn-bg-hover-color) hover:underline active:text-(--btn-bg-active-color);
+  }
+  /* -------------------------- end apply styles end -------------------------- */
+
+  /* --------------------------- handle focus state --------------------------- */
+  :is(.btn-solid, .btn-soft) {
+    @apply ring-offset-1 focus-visible:ring-(--btn-bg-color) dark:focus-visible:ring-offset-(--btn-bg-active-color);
+  }
+  :is(.btn-outline, .btn-ghost, .btn-link) {
+    @apply ring-offset-1 focus-visible:ring-(--btn-text-color) dark:focus-visible:ring-offset-(--btn-bg-active-color);
+  }
+  /* ----------------------------------end---------------------------------------- */
+
+  /* roundness classes */
+  .btn-circle {
+    @apply aspect-square rounded-full;
+  }
+  /* disabled state */
+  .btn-disabled {
+    @apply cursor-not-allowed opacity-95 brightness-[0.95] contrast-[0.85];
+  }
+  .btn-loading {
+    @apply cursor-progress;
+  }
+}
